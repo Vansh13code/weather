@@ -33,21 +33,7 @@ def get_weather():
     
     else:
         return jsonify({"error":"Failed to fetch weather data"}),500  
-@app.route("/weather",methods=["POST"])
-def add():
-    data=request.json
-    cities=[]
-    for i in cities:
-        response=requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={i}&appid={Api_key}")
-        if response.status_code==200:
-            data=response.json()
-            weatherinfo={
-                "city":data["name"],
-                "temperature":data["main"]["temp"],
-                "description":data["weather"][0]["description"],
-                "humidity":data["main"]["humidity"]
-            }
-            cities.append(weatherinfo)
+
 
     return jsonify(cities)
 async def fetch_weather(session, city):
